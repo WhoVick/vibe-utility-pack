@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vibe Utility Pack</title>
+  <meta name="description" content="Ten useful dependency-free project MVPs for fast GitHub publishing.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail" aria-label="Tools">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">VU</span>
+        <div>
+          <strong>Vibe Utility Pack</strong>
+          <span>10 tiny useful builds</span>
+        </div>
+      </div>
+      <nav class="tabs" id="tabs"></nav>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Local-first, dependency-free MVPs</p>
+          <h1 id="toolTitle">Personal Ops Dashboard</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="exportState" title="Export local data" aria-label="Export local data">EX</button>
+          <button class="icon-button" id="clearState" title="Clear saved local data" aria-label="Clear saved local data">CL</button>
+        </div>
+      </header>
+
+      <section class="tool-panel active" id="ops" data-title="Personal Ops Dashboard">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Focus Queue</h2>
+            <div class="inline-form">
+              <input id="taskInput" type="text" placeholder="Ship README, email sponsor, fix auth...">
+              <button id="addTask">Add</button>
+            </div>
+            <ul class="stack-list" id="taskList"></ul>
+          </section>
+          <section class="panel">
+            <h2>Quick Notes</h2>
+            <textarea id="opsNotes" rows="9" placeholder="Scratchpad, decisions, links, today's plan..."></textarea>
+          </section>
+          <section class="panel">
+            <h2>Habit Pulse</h2>
+            <div class="habit-grid" id="habitGrid"></div>
+          </section>
+          <section class="panel">
+            <h2>Launch Links</h2>
+            <div class="inline-form">
+              <input id="linkLabel" type="text" placeholder="Label">
+              <input id="linkUrl" type="url" placeholder="https://">
+              <button id="addLink">Add</button>
+            </div>
+            <ul class="stack-list" id="linkList"></ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="readme" data-title="README Roast & Fixer">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>README Input</h2>
+            <textarea id="readmeInput" rows="18" placeholder="# Project&#10;&#10;Paste a README here..."></textarea>
+            <div class="button-row">
+              <button id="sampleReadme">Sample</button>
+              <button id="analyzeReadme">Analyze</button>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Fix Plan</h2>
+            <div id="readmeScore" class="metric-line"></div>
+            <ul class="check-list" id="readmeFindings"></ul>
+            <label class="field-label" for="readmeOutput">Generated outline</label>
+            <textarea id="readmeOutput" rows="10" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="finance" data-title="Tiny Finance Tracker">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>CSV Import</h2>
+            <p class="hint">Columns: date, description, amount. Negative values are expenses.</p>
+            <textarea id="financeCsv" rows="16" placeholder="date,description,amount&#10;2026-05-01,Coffee,-4.90"></textarea>
+            <div class="button-row">
+              <button id="sampleFinance">Sample</button>
+              <button id="parseFinance">Summarize</button>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Monthly Summary</h2>
+            <div class="metric-strip" id="financeMetrics"></div>
+            <div class="bar-list" id="financeBars"></div>
+            <label class="field-label" for="financeCleanCsv">Clean CSV</label>
+            <textarea id="financeCleanCsv" rows="7" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="prompts" data-title="Local AI Prompt Vault">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Prompt Editor</h2>
+            <input id="promptTitle" type="text" placeholder="Prompt title">
+            <input id="promptTags" type="text" placeholder="tags, separated, by comma">
+            <textarea id="promptBody" rows="10" placeholder="Write a prompt with {variables}..."></textarea>
+            <div class="button-row">
+              <button id="savePrompt">Save</button>
+              <button id="clearPromptEditor">Clear</button>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Vault</h2>
+            <input id="promptSearch" type="search" placeholder="Search prompts or tags">
+            <ul class="stack-list" id="promptList"></ul>
+            <label class="field-label" for="promptRenderVars">Variables JSON</label>
+            <input id="promptRenderVars" type="text" placeholder='{"project":"Acme"}'>
+            <textarea id="promptPreview" rows="8" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="issue" data-title="Screenshot-to-Issue Generator">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Screenshot Annotator</h2>
+            <input id="screenshotFile" type="file" accept="image/*">
+            <canvas id="issueCanvas" width="900" height="520" aria-label="Screenshot annotation canvas"></canvas>
+            <div class="button-row">
+              <button id="undoAnnotation">Undo</button>
+              <button id="clearAnnotations">Clear</button>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Issue Markdown</h2>
+            <input id="issueTitle" type="text" placeholder="Short bug title">
+            <textarea id="issueSteps" rows="4" placeholder="Steps to reproduce"></textarea>
+            <textarea id="issueExpected" rows="3" placeholder="Expected behavior"></textarea>
+            <textarea id="issueActual" rows="3" placeholder="Actual behavior"></textarea>
+            <button id="buildIssue">Build Issue</button>
+            <textarea id="issueMarkdown" rows="9" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="health" data-title="Repo Health Badge Generator">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Repo Signals</h2>
+            <input id="repoName" type="text" placeholder="owner/repo or project name">
+            <div class="switch-grid" id="healthChecks"></div>
+            <button id="buildHealth">Generate</button>
+          </section>
+          <section class="panel">
+            <h2>Health Report</h2>
+            <div class="metric-line" id="healthScore"></div>
+            <div class="badge-row" id="healthBadges"></div>
+            <textarea id="healthMarkdown" rows="14" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="meeting" data-title="Meeting Notes to Action Items">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Messy Notes</h2>
+            <textarea id="meetingInput" rows="18" placeholder="@maya follow up with legal by 2026-06-04&#10;Decision: launch beta on Friday&#10;TODO Sam update pricing page"></textarea>
+            <div class="button-row">
+              <button id="sampleMeeting">Sample</button>
+              <button id="parseMeeting">Extract</button>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Clean Output</h2>
+            <textarea id="meetingOutput" rows="18" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="doctor" data-title="Dev Environment Doctor">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Paste Diagnostics</h2>
+            <p class="hint">Run versions manually or use <code>npm run doctor</code> in this repo.</p>
+            <textarea id="doctorInput" rows="16" placeholder="node --version: v24.11.1&#10;npm --version: 11.6.2&#10;git --version: git version 2.50.0"></textarea>
+            <div class="button-row">
+              <button id="sampleDoctor">Sample</button>
+              <button id="runDoctorParser">Check</button>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Doctor Report</h2>
+            <ul class="check-list" id="doctorReport"></ul>
+            <textarea id="doctorMarkdown" rows="9" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="site" data-title="Small Business Website Starter">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Business Config</h2>
+            <input id="bizName" type="text" placeholder="Studio North">
+            <input id="bizOffer" type="text" placeholder="Pilates, coaching, design audits...">
+            <input id="bizCity" type="text" placeholder="City">
+            <textarea id="bizServices" rows="5" placeholder="Private sessions - 75&#10;Group class - 28&#10;Intro consult - free"></textarea>
+            <input id="bizContact" type="text" placeholder="hello@example.com">
+            <button id="buildSite">Generate Site</button>
+          </section>
+          <section class="panel">
+            <h2>Static HTML</h2>
+            <textarea id="siteOutput" rows="18" readonly></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="changelog" data-title="What Changed? Changelog Bot">
+        <div class="tool-grid two">
+          <section class="panel">
+            <h2>Commit Log</h2>
+            <p class="hint">Paste lines from <code>git log --oneline</code> or conventional commits.</p>
+            <textarea id="changeInput" rows="18" placeholder="feat: add CSV importer&#10;fix: handle empty amount&#10;docs: update README"></textarea>
+            <div class="button-row">
+              <button id="sampleChange">Sample</button>
+              <button id="buildChange">Generate</button>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Release Notes</h2>
+            <textarea id="changeOutput" rows="18" readonly></textarea>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
