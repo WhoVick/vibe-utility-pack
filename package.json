@@ -1,0 +1,31 @@
+{
+  "name": "vibe-utility-pack",
+  "version": "0.1.0",
+  "description": "Ten fast, useful, dependency-free project MVPs in one GitHub-ready utility pack.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node bin/static-server.mjs",
+    "doctor": "node bin/dev-doctor.mjs",
+    "repo-health": "node bin/repo-health.mjs",
+    "changelog": "node bin/changelog.mjs",
+    "check": "node --check app.js && node --check bin/dev-doctor.mjs && node --check bin/repo-health.mjs && node --check bin/changelog.mjs && node --check bin/static-server.mjs",
+    "test": "npm run check"
+  },
+  "bin": {
+    "vibe-doctor": "bin/dev-doctor.mjs",
+    "vibe-health": "bin/repo-health.mjs",
+    "vibe-changelog": "bin/changelog.mjs"
+  },
+  "keywords": [
+    "developer-tools",
+    "productivity",
+    "static-site",
+    "local-first",
+    "github"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
