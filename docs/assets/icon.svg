@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Vibe Utility Pack icon">
+  <rect width="512" height="512" rx="96" fill="#14213d"/>
+  <path fill="#f4f7fb" d="M122 132h72l62 167 62-167h72L292 380h-72L122 132Z"/>
+  <path fill="#73c0de" d="M340 132h50v248h-50V132Zm-32 0h50v48h-50v-48Z" opacity=".92"/>
+</svg>

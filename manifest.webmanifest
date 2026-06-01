@@ -1,0 +1,18 @@
+{
+  "name": "Vibe Utility Pack",
+  "short_name": "Vibe Utils",
+  "description": "A local-first toolkit with ten dependency-free maintainer utilities.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#14213d",
+  "icons": [
+    {
+      "src": "docs/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

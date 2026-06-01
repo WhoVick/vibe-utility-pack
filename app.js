@@ -1,3 +1,11 @@
+import {
+  assessReadme,
+  buildChangelogNotes,
+  parseDoctorDiagnostics,
+  parseMeetingNotes,
+  summarizeFinanceCsv
+} from "./src/core.mjs";
+
 const tools = [
   ["ops", "OP", "Personal Ops"],
   ["readme", "RD", "README Fixer"],
@@ -204,60 +212,12 @@ function initReadme() {
 }
 
 function analyzeReadme() {
-  const text = $("#readmeInput").value.trim();
-  const checks = [
-    ["Project title", /^#\s+.+/m, "Add a single clear H1 with the project name."],
-    ["Problem statement", /problem|why|purpose|for .+ who/i, "Explain who this helps and why it exists."],
-    ["Install steps", /install|setup|getting started/i, "Include exact installation or startup commands."],
-    ["Usage example", /usage|example|quickstart|demo/i, "Show the first successful command or workflow."],
-    ["Screenshot or GIF", /screenshot|demo|\.png|\.gif|\.webp/i, "Add a visual proof of what the project does."],
-    ["License", /license/i, "State the license so people know how they can use it."],
-    ["Contributing", /contributing|pull request|issues/i, "Add a tiny contribution note or issue policy."]
-  ];
-  const passed = checks.filter(([, pattern]) => pattern.test(text));
-  $("#readmeScore").textContent = `${passed.length}/${checks.length} README signals found`;
-  $("#readmeFindings").innerHTML = checks.map(([name, pattern, fix]) => {
-    const ok = pattern.test(text);
-    return `<li><span><strong>${ok ? "Pass" : "Fix"}: ${name}</strong><small>${ok ? "Looks covered." : fix}</small></span></li>`;
-  }).join("");
-
-  const title = (text.match(/^#\s+(.+)/m) || [null, "Project Name"])[1];
-  $("#readmeOutput").value = `# ${title}
-
-One-sentence promise: what this does, for whom, and why it is better than doing it manually.
-
-## Demo
-
-Add a screenshot, GIF, or short terminal example here.
-
-## Features
-
-- Fast local workflow
-- Clear input and output
-- No hidden setup
-
-## Install
-
-\`\`\`bash
-npm install
-npm start
-\`\`\`
-
-## Usage
-
-\`\`\`bash
-npm run example
-\`\`\`
-
-## Roadmap
-
-- Add tests around the core parser
-- Publish a hosted demo
-- Package the CLI
-
-## License
-
-MIT`;
+  const report = assessReadme($("#readmeInput").value);
+  $("#readmeScore").textContent = `${report.passed}/${report.total} README signals found`;
+  $("#readmeFindings").innerHTML = report.checks.map((check) => (
+    `<li><span><strong>${check.ok ? "Pass" : "Fix"}: ${check.name}</strong><small>${check.ok ? "Looks covered." : check.fix}</small></span></li>`
+  )).join("");
+  $("#readmeOutput").value = report.outline;
 }
 
 function initFinance() {
@@ -274,90 +234,22 @@ function initFinance() {
   $("#parseFinance").addEventListener("click", parseFinance);
 }
 
-function parseCsv(text) {
-  const rows = [];
-  let row = [];
-  let cell = "";
-  let quoted = false;
-  for (let i = 0; i < text.length; i += 1) {
-    const char = text[i];
-    const next = text[i + 1];
-    if (char === '"' && quoted && next === '"') {
-      cell += '"';
-      i += 1;
-    } else if (char === '"') {
-      quoted = !quoted;
-    } else if (char === "," && !quoted) {
-      row.push(cell);
-      cell = "";
-    } else if ((char === "\n" || char === "\r") && !quoted) {
-      if (char === "\r" && next === "\n") i += 1;
-      row.push(cell);
-      if (row.some((value) => value.trim())) rows.push(row);
-      row = [];
-      cell = "";
-    } else {
-      cell += char;
-    }
-  }
-  row.push(cell);
-  if (row.some((value) => value.trim())) rows.push(row);
-  return rows;
-}
-
-function categorize(description) {
-  const value = description.toLowerCase();
-  if (/rent|mortgage|lease/.test(value)) return "Housing";
-  if (/grocery|market|food|supermarket/.test(value)) return "Groceries";
-  if (/coffee|restaurant|cafe|bar/.test(value)) return "Dining";
-  if (/metro|uber|taxi|fuel|parking|train/.test(value)) return "Transport";
-  if (/aws|openai|github|netflix|spotify|subscription|bill/.test(value)) return "Subscriptions";
-  if (/salary|payroll|invoice|client/.test(value)) return "Income";
-  return "Other";
-}
-
 function parseFinance() {
-  const rows = parseCsv($("#financeCsv").value);
-  const headers = rows.shift()?.map((item) => item.trim().toLowerCase()) || [];
-  const dateIndex = headers.indexOf("date");
-  const descIndex = headers.indexOf("description");
-  const amountIndex = headers.indexOf("amount");
-  const records = rows.map((row) => {
-    const amount = Number(String(row[amountIndex] || "0").replace(/\s/g, ""));
-    const description = row[descIndex] || "";
-    return {
-      date: row[dateIndex] || "",
-      description,
-      amount,
-      category: categorize(description)
-    };
-  }).filter((record) => Number.isFinite(record.amount));
-
-  const income = records.filter((record) => record.amount > 0).reduce((sum, record) => sum + record.amount, 0);
-  const expense = records.filter((record) => record.amount < 0).reduce((sum, record) => sum + Math.abs(record.amount), 0);
-  const byCategory = records.reduce((map, record) => {
-    if (record.amount < 0) map[record.category] = (map[record.category] || 0) + Math.abs(record.amount);
-    return map;
-  }, {});
+  const report = summarizeFinanceCsv($("#financeCsv").value);
 
   $("#financeMetrics").innerHTML = [
-    ["Income", income],
-    ["Expenses", expense],
-    ["Net", income - expense]
+    ["Income", report.income],
+    ["Expenses", report.expense],
+    ["Net", report.net]
   ].map(([label, amount]) => `<div class="metric"><span>${label}</span><strong>$${amount.toFixed(2)}</strong></div>`).join("");
 
-  const max = Math.max(...Object.values(byCategory), 1);
-  $("#financeBars").innerHTML = Object.entries(byCategory)
+  const max = Math.max(...Object.values(report.byCategory), 1);
+  $("#financeBars").innerHTML = Object.entries(report.byCategory)
     .sort((a, b) => b[1] - a[1])
     .map(([name, amount]) => `<div class="bar"><label><span>${name}</span><strong>$${amount.toFixed(2)}</strong></label><span style="width:${Math.max(8, (amount / max) * 100)}%"></span></div>`)
     .join("");
 
-  $("#financeCleanCsv").value = ["date,description,amount,category", ...records.map((record) => [
-    record.date,
-    `"${record.description.replaceAll('"', '""')}"`,
-    record.amount.toFixed(2),
-    record.category
-  ].join(","))].join("\n");
+  $("#financeCleanCsv").value = report.cleanCsv;
 }
 
 function initPrompts() {
@@ -637,38 +529,7 @@ Action: Leo prepare demo account by Friday`;
 }
 
 function parseMeeting() {
-  const lines = $("#meetingInput").value.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
-  const decisions = [];
-  const risks = [];
-  const actions = [];
-  lines.forEach((line) => {
-    if (/^decision\s*:/i.test(line)) {
-      decisions.push(line.replace(/^decision\s*:\s*/i, ""));
-      return;
-    }
-    if (/^risk\s*:/i.test(line)) {
-      risks.push(line.replace(/^risk\s*:\s*/i, ""));
-      return;
-    }
-    if (/todo|action|follow up|follow-up|next/i.test(line)) {
-      const owner = (line.match(/@([a-z0-9_-]+)/i) || line.match(/(?:todo|action)\s+([A-Z][a-z0-9_-]+)/i) || [null, "Unassigned"])[1];
-      const due = (line.match(/\b\d{4}-\d{2}-\d{2}\b/) || line.match(/\bby\s+(.+)$/i) || [null, "No due date"])[1];
-      actions.push({ owner, due, task: line.replace(/^(todo|action)\s*:?\s*/i, "").replace(/@\w+/, "").trim() });
-    }
-  });
-  $("#meetingOutput").value = `# Meeting Summary
-
-## Decisions
-
-${decisions.map((item) => `- ${item}`).join("\n") || "- None found."}
-
-## Action Items
-
-${actions.map((item) => `- [ ] ${item.task} | owner: ${item.owner} | due: ${item.due}`).join("\n") || "- None found."}
-
-## Risks / Follow-ups
-
-${risks.map((item) => `- ${item}`).join("\n") || "- None found."}`;
+  $("#meetingOutput").value = parseMeetingNotes($("#meetingInput").value).markdown;
 }
 
 function initDoctor() {
@@ -684,30 +545,11 @@ docker --version: Docker version 27.5.1`;
 }
 
 function parseDoctor() {
-  const input = $("#doctorInput").value;
-  const checks = [
-    ["Node.js", /node[^\n]*v?(\d+)\./i, 18],
-    ["npm", /npm[^\n]*(\d+)\./i, 8],
-    ["Git", /git version\s+(\d+)\./i, 2],
-    ["Python", /python[^\n]*(\d+)\.(\d+)/i, 3],
-    ["Docker", /docker version\s+(\d+)\./i, 20]
-  ];
-  const results = checks.map(([name, pattern, minimum]) => {
-    const match = input.match(pattern);
-    if (!match) return { name, ok: false, detail: "not found in pasted diagnostics" };
-    const major = Number(match[1]);
-    return { name, ok: major >= minimum, detail: `detected major ${major}, recommended ${minimum}+` };
-  });
-  $("#doctorReport").innerHTML = results.map((result) => `
+  const report = parseDoctorDiagnostics($("#doctorInput").value);
+  $("#doctorReport").innerHTML = report.results.map((result) => `
     <li><span><strong>${result.ok ? "Pass" : "Check"}: ${result.name}</strong><small>${result.detail}</small></span></li>
   `).join("");
-  $("#doctorMarkdown").value = `# Dev Environment Report
-
-${results.map((result) => `- ${result.ok ? "[x]" : "[ ]"} ${result.name}: ${result.detail}`).join("\n")}
-
-## Suggested next step
-
-Install or expose missing tools on PATH, then rerun the doctor.`;
+  $("#doctorMarkdown").value = report.markdown;
 }
 
 function initSiteStarter() {
@@ -772,30 +614,14 @@ chore: bump version`;
 }
 
 function buildChangelog() {
-  const groups = {
-    Features: [],
-    Fixes: [],
-    Docs: [],
-    Maintenance: [],
-    Other: []
-  };
-  $("#changeInput").value.split(/\r?\n/).map((line) => line.trim()).filter(Boolean).forEach((line) => {
-    const cleaned = line.replace(/^[a-f0-9]{7,40}\s+/i, "");
-    const match = cleaned.match(/^(\w+)(\(.+\))?!?:\s+(.+)/);
-    const type = match?.[1] || "";
-    const message = match?.[3] || cleaned;
-    if (type === "feat") groups.Features.push(message);
-    else if (type === "fix") groups.Fixes.push(message);
-    else if (type === "docs") groups.Docs.push(message);
-    else if (["chore", "refactor", "test", "build", "ci"].includes(type)) groups.Maintenance.push(message);
-    else groups.Other.push(message);
+  $("#changeOutput").value = buildChangelogNotes($("#changeInput").value, today()).markdown;
+}
+
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator) || location.protocol === "file:") return;
+  navigator.serviceWorker.register("./sw.js").catch((error) => {
+    console.warn("Offline cache registration failed", error);
   });
-
-  $("#changeOutput").value = `# Release Notes - ${today()}
-
-${Object.entries(groups).filter(([, items]) => items.length).map(([name, items]) => `## ${name}
-
-${items.map((item) => `- ${item}`).join("\n")}`).join("\n\n") || "No changes found."}`;
 }
 
 function init() {
@@ -811,6 +637,7 @@ function init() {
   initDoctor();
   initSiteStarter();
   initChangelog();
+  registerServiceWorker();
 }
 
 init();

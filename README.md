@@ -8,7 +8,7 @@ Ten small, useful, dependency-free MVPs you can build on fast and publish on Git
 
 **Live demo:** https://whovick.github.io/vibe-utility-pack/
 
-![Vibe Utility Pack preview](docs/assets/preview.svg)
+![Vibe Utility Pack screenshot](docs/assets/screenshot.png)
 
 ## What is inside
 
@@ -37,6 +37,8 @@ Then open:
 http://localhost:4173
 ```
 
+The hosted demo also registers a small service worker, so repeat visits can open the toolkit offline from GitHub Pages.
+
 ## CLI tools
 
 ```bash
@@ -62,6 +64,12 @@ On macOS/Linux, replace `type` with `cat`.
 |-- index.html
 |-- styles.css
 |-- app.js
+|-- manifest.webmanifest
+|-- sw.js
+|-- src/
+|   `-- core.mjs
+|-- tests/
+|   `-- core.test.mjs
 |-- bin/
 |   |-- changelog.mjs
 |   |-- dev-doctor.mjs
@@ -72,11 +80,10 @@ On macOS/Linux, replace `type` with `cat`.
 
 ## GitHub publishing checklist
 
-- Add screenshots or a short GIF to the README.
 - Run `npm test`.
 - Run `npm run repo-health`.
-- Create a public repository and push this folder.
-- Turn on GitHub Pages with the repository root as the source, or host `index.html` anywhere static files are supported.
+- Open the GitHub Pages demo and verify the service worker registers.
+- Keep `SECURITY.md`, `CONTRIBUTING.md`, issue templates, and release notes current.
 
 ## Maintainer Workflows
 
@@ -91,14 +98,20 @@ This repository is designed as a practical OSS maintenance toolkit. Several tool
 
 The planned Codex/API integration path is optional and maintainer-focused: summarize pull requests, suggest issue labels, flag documentation gaps, generate release notes, and review parser changes for regressions while keeping the app usable without API keys.
 
+Planning docs:
+
+- `docs/SECURITY_MODEL.md`
+- `docs/OPENAI_AUTOMATION_PLAN.md`
+- `docs/CODEX_FOR_OSS_APPLICATION.md`
+
 ## OSS Status
 
 This is an early-stage public OSS project maintained by `WhoVick`. It currently prioritizes clear documentation, security-conscious local-first behavior, issue templates, review checklists, and a low-dependency architecture so contributors can inspect and fork it easily.
 
 ## Roadmap
 
+- Add a short GIF that walks through the ten-tool workflow.
 - Add drag-and-drop import/export for each tool.
-- Add a service worker for offline install.
 - Split each MVP into its own package when one gets traction.
 - Add GitHub issue template export for the screenshot tool.
 - Add optional OpenAI API-powered maintainer automations behind explicit user-owned API keys.

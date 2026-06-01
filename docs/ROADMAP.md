@@ -2,10 +2,17 @@
 
 ## Near term
 
-- Add screenshots and a hosted GitHub Pages demo.
+- Add a short GIF that walks through the ten-tool workflow.
 - Add import/export flows for each tool.
-- Add unit-level parser tests for CSV, changelog, README, and meeting notes.
 - Add labels and issue triage workflow.
+- Expand parser tests as each import/export format grows.
+
+## Completed in 0.2.0
+
+- Added a hosted GitHub Pages demo screenshot to the README.
+- Added unit-level parser tests for CSV, changelog, README, meeting notes, finance summaries, and diagnostics.
+- Added installable/offline support with a manifest and service worker.
+- Added security and OpenAI automation planning docs.
 
 ## Maintainer automation
 

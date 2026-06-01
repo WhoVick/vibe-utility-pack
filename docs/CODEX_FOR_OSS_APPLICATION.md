@@ -16,6 +16,14 @@ This is an early-stage public OSS project. It does not yet have broad usage metr
 
 API credits would be used to add optional maintainer automation: pull request review summaries, issue triage suggestions, changelog generation, README quality checks, and release workflow assistance. The core app should remain usable without API keys.
 
+See `OPENAI_AUTOMATION_PLAN.md` for the first implementation path.
+
 ## Why Codex helps
 
 Codex can reduce maintainer load by reviewing parser changes, checking documentation consistency, generating release notes, and identifying security or privacy risks in local-first workflows.
+
+## Why Codex Security helps
+
+The project processes untrusted CSV, Markdown, meeting notes, diagnostics, issue text, prompts, and generated HTML. Codex Security would help review XSS, injection, data persistence, offline caching, and future API-powered maintainer workflows before adoption grows.
+
+See `SECURITY_MODEL.md` for the current threat model.
