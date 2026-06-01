@@ -6,6 +6,10 @@
 
 Ten small, useful, dependency-free MVPs you can build on fast and publish on GitHub. The browser app runs as a local-first toolkit, and the `bin/` folder includes CLI versions for the developer-focused ideas.
 
+**Live demo:** https://whovick.github.io/vibe-utility-pack/
+
+![Vibe Utility Pack preview](docs/assets/preview.svg)
+
 ## What is inside
 
 - Personal Ops Dashboard: tasks, notes, habits, and launch links stored locally.
