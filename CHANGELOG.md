@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 - 2026-06-01
+
+- Improved screenshot-to-issue export with annotated PNG download.
+- Added GitHub-friendly issue markdown metadata, image attachment hint, and labels.
+
 ## 0.2.0 - 2026-06-01
 
 - Added installable/offline support with `manifest.webmanifest` and a service worker.

@@ -65,6 +65,18 @@ function downloadText(filename, text, type = "text/plain") {
   URL.revokeObjectURL(url);
 }
 
+function downloadCanvasPng(canvas, filename) {
+  canvas.toBlob((blob) => {
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  }, "image/png");
+}
+
 function initTabs() {
   const tabs = $("#tabs");
   tabs.innerHTML = "";
@@ -388,6 +400,7 @@ function initIssue() {
     drawIssueCanvas(ctx, canvas);
   });
   $("#buildIssue").addEventListener("click", buildIssueMarkdown);
+  $("#downloadIssueImage").addEventListener("click", () => downloadCanvasPng(canvas, "annotated-screenshot.png"));
 }
 
 function canvasPoint(canvas, event) {
@@ -439,6 +452,12 @@ function buildIssueMarkdown() {
   const points = issueState.annotations.map((rect, index) => `- Annotation ${index + 1}: x=${Math.round(rect.x)}, y=${Math.round(rect.y)}, w=${Math.round(rect.w)}, h=${Math.round(rect.h)}`).join("\n") || "- No annotations added.";
   $("#issueMarkdown").value = `# ${$("#issueTitle").value.trim() || "Bug report"}
 
+<!-- GitHub issue template export -->
+
+Labels: bug, needs-triage
+
+Attach: annotated-screenshot.png
+
 ## Steps to reproduce
 
 ${$("#issueSteps").value.trim() || "1. Open the affected page\n2. Trigger the behavior"}
@@ -452,6 +471,8 @@ ${$("#issueExpected").value.trim() || "Describe the expected result."}
 ${$("#issueActual").value.trim() || "Describe the actual result."}
 
 ## Screenshot notes
+
+![Annotated screenshot](annotated-screenshot.png)
 
 ${points}
 

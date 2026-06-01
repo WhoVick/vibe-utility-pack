@@ -6,6 +6,11 @@
 - Add labels and issue triage workflow.
 - Expand parser tests as each import/export format grows.
 
+## Completed in 0.2.1
+
+- Improved screenshot-to-issue export with annotated PNG download.
+- Added GitHub-friendly issue markdown metadata and attachment hints.
+
 ## Completed in 0.2.0
 
 - Added a hosted GitHub Pages demo screenshot to the README.

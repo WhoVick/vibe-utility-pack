@@ -1,6 +1,6 @@
 {
   "name": "vibe-utility-pack",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Ten local-first, dependency-free maintainer utilities in one GitHub-ready toolkit.",
   "type": "module",
   "private": false,
