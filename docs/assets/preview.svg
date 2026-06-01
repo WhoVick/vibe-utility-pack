@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Vibe Utility Pack preview</title>
+  <desc id="desc">Preview of a local-first maintainer toolkit with ten utility tabs and a dashboard panel.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#ecfdf5"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#14213d" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="64" y="48" width="1152" height="624" rx="18" fill="#ffffff" filter="url(#shadow)"/>
+  <rect x="64" y="48" width="260" height="624" rx="18" fill="#f8fafc"/>
+  <rect x="64" y="48" width="260" height="624" rx="18" fill="none" stroke="#d9dee8"/>
+  <rect x="102" y="88" width="48" height="48" rx="10" fill="#14213d"/>
+  <text x="126" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">VU</text>
+  <text x="166" y="105" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#14213d">Vibe Utility Pack</text>
+  <text x="166" y="128" font-family="Arial, sans-serif" font-size="13" fill="#5c677d">10 tiny useful builds</text>
+
+  <g font-family="Arial, sans-serif" font-size="14">
+    <rect x="94" y="172" width="200" height="44" rx="9" fill="#ffffff" stroke="#d9dee8"/>
+    <rect x="106" y="181" width="26" height="26" rx="7" fill="#2563eb"/>
+    <text x="119" y="199" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">OP</text>
+    <text x="146" y="199" font-weight="700" fill="#14213d">Personal Ops</text>
+
+    <text x="106" y="249" fill="#5c677d">RD  README Fixer</text>
+    <text x="106" y="286" fill="#5c677d">FN  Finance Tracker</text>
+    <text x="106" y="323" fill="#5c677d">PR  Prompt Vault</text>
+    <text x="106" y="360" fill="#5c677d">IS  Screenshot Issue</text>
+    <text x="106" y="397" fill="#5c677d">HT  Repo Health</text>
+    <text x="106" y="434" fill="#5c677d">MT  Meeting Notes</text>
+    <text x="106" y="471" fill="#5c677d">DR  Dev Doctor</text>
+    <text x="106" y="508" fill="#5c677d">ST  Site Starter</text>
+    <text x="106" y="545" fill="#5c677d">CH  Changelog Bot</text>
+  </g>
+
+  <text x="370" y="112" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#0f8b62">LOCAL-FIRST, DEPENDENCY-FREE MVPS</text>
+  <text x="370" y="154" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#14213d">Personal Ops Dashboard</text>
+  <rect x="370" y="194" width="370" height="206" rx="12" fill="#ffffff" stroke="#d9dee8"/>
+  <text x="394" y="230" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#14213d">Focus Queue</text>
+  <rect x="394" y="255" width="252" height="36" rx="8" fill="#f8fafc" stroke="#d9dee8"/>
+  <rect x="656" y="255" width="60" height="36" rx="8" fill="#14213d"/>
+  <text x="686" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Add</text>
+  <rect x="394" y="315" width="300" height="44" rx="8" fill="#ffffff" stroke="#d9dee8"/>
+  <circle cx="414" cy="337" r="7" fill="#0f8b62"/>
+  <text x="434" y="342" font-family="Arial, sans-serif" font-size="14" fill="#14213d">Ship README and demo link</text>
+
+  <rect x="770" y="194" width="370" height="206" rx="12" fill="#ffffff" stroke="#d9dee8"/>
+  <text x="794" y="230" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#14213d">Maintainer Tools</text>
+  <g font-family="Arial, sans-serif" font-size="14" fill="#14213d">
+    <rect x="794" y="258" width="145" height="58" rx="9" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="818" y="292">README score</text>
+    <rect x="958" y="258" width="145" height="58" rx="9" fill="#ecfdf5" stroke="#bbf7d0"/>
+    <text x="982" y="292">Repo health</text>
+    <rect x="794" y="331" width="145" height="58" rx="9" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="818" y="365">Issue maker</text>
+    <rect x="958" y="331" width="145" height="58" rx="9" fill="#fdf2f8" stroke="#fbcfe8"/>
+    <text x="982" y="365">Changelog</text>
+  </g>
+
+  <rect x="370" y="430" width="770" height="158" rx="12" fill="#ffffff" stroke="#d9dee8"/>
+  <text x="394" y="466" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#14213d">OSS-ready signals</text>
+  <g font-family="Arial, sans-serif" font-size="15" fill="#14213d">
+    <text x="394" y="506">CI, MIT license, Security policy, Contribution guide</text>
+    <text x="394" y="538">Issue templates, PR checklist, roadmap and release notes</text>
+    <text x="394" y="570">Optional Codex/API maintainer automation plan</text>
+  </g>
+</svg>
