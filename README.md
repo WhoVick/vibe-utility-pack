@@ -4,9 +4,15 @@
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![local-first](https://img.shields.io/badge/local--first-yes-blue)
 
-Ten small, useful, dependency-free MVPs you can build on fast and publish on GitHub. The browser app runs as a local-first toolkit, and the `bin/` folder includes CLI versions for the developer-focused ideas.
+Local-first maintainer toolkit with ten dependency-free utilities for README review, repo health, screenshot-to-issue reports, changelog drafting, meeting-note cleanup, and contributor onboarding.
+
+The browser app runs on GitHub Pages with no backend, account, analytics, or API key. The CLI scripts in `bin/` cover the maintainer workflows that benefit from terminal input.
 
 **Live demo:** https://whovick.github.io/vibe-utility-pack/
+
+**Why this exists:** small OSS projects often fail at the same maintenance chores: unclear READMEs, weak issue reports, missing release notes, rough contributor setup, and undocumented security assumptions. This repo packages those checks into fast local tools that are easy to inspect, fork, and extend.
+
+**Current OSS signals:** MIT license, CI, GitHub Pages, releases, issue templates, PR template, security policy, contributing guide, parser regression tests, offline-capable static app, security model, adoption plan, and optional Codex/API automation plan.
 
 ![Vibe Utility Pack screenshot](docs/assets/screenshot.png)
 
@@ -102,6 +108,9 @@ The planned Codex/API integration path is optional and maintainer-focused: summa
 
 Planning docs:
 
+- `docs/DEMO_SCRIPT.md`
+- `docs/MAINTAINER_WORKFLOWS.md`
+- `docs/ADOPTION.md`
 - `docs/SECURITY_MODEL.md`
 - `docs/OPENAI_AUTOMATION_PLAN.md`
 - `docs/CODEX_FOR_OSS_APPLICATION.md`
@@ -112,10 +121,11 @@ This is an early-stage public OSS project maintained by `WhoVick`. It currently 
 
 ## Roadmap
 
+- Publish the CLI tools as an npm package once command output stabilizes.
+- Prototype one optional OpenAI-powered maintainer workflow.
+- Run an accessibility and keyboard navigation pass across all ten tools.
 - Add drag-and-drop import/export for each tool.
 - Split each MVP into its own package when one gets traction.
-- Add GitHub issue template export for the screenshot tool.
-- Add optional OpenAI API-powered maintainer automations behind explicit user-owned API keys.
 
 ## Community
 

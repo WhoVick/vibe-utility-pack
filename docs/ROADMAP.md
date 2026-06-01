@@ -2,6 +2,9 @@
 
 ## Near term
 
+- Publish the CLI tools as an npm package when command output is stable.
+- Prototype one optional OpenAI-powered maintainer workflow.
+- Run an accessibility and keyboard navigation pass across the browser app.
 - Add import/export flows for each tool.
 - Add labels and issue triage workflow.
 - Expand parser tests as each import/export format grows.
