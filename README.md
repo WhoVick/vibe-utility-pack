@@ -108,6 +108,7 @@ This is an early-stage public OSS project maintained by `WhoVick`. It currently 
 - See `CONTRIBUTING.md` for contribution guidelines.
 - See `SECURITY.md` for vulnerability reporting.
 - Use GitHub issues for focused bugs, feature requests, and documentation tasks.
+- Use GitHub Discussions for broader support questions and project ideas.
 
 ## License
 
