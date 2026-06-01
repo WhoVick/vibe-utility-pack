@@ -5,6 +5,7 @@
 - Added installable/offline support with `manifest.webmanifest` and a service worker.
 - Extracted core parser logic into `src/core.mjs`.
 - Added Node regression tests for CSV, finance summaries, README checks, meeting notes, diagnostics, and changelog generation.
+- Added a short demo GIF and real screenshot for README evaluation.
 - Added a security model and OpenAI automation plan for maintainer workflows.
 - Updated the README with a real screenshot slot and stronger OSS readiness notes.
 

@@ -10,6 +10,8 @@ Ten small, useful, dependency-free MVPs you can build on fast and publish on Git
 
 ![Vibe Utility Pack screenshot](docs/assets/screenshot.png)
 
+![Vibe Utility Pack demo](docs/assets/demo.gif)
+
 ## What is inside
 
 - Personal Ops Dashboard: tasks, notes, habits, and launch links stored locally.
@@ -110,7 +112,6 @@ This is an early-stage public OSS project maintained by `WhoVick`. It currently 
 
 ## Roadmap
 
-- Add a short GIF that walks through the ten-tool workflow.
 - Add drag-and-drop import/export for each tool.
 - Split each MVP into its own package when one gets traction.
 - Add GitHub issue template export for the screenshot tool.
