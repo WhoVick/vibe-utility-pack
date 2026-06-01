@@ -3,7 +3,15 @@
   "version": "0.1.0",
   "description": "Ten fast, useful, dependency-free project MVPs in one GitHub-ready utility pack.",
   "type": "module",
-  "private": true,
+  "private": false,
+  "homepage": "https://whovick.github.io/vibe-utility-pack/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WhoVick/vibe-utility-pack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WhoVick/vibe-utility-pack/issues"
+  },
   "scripts": {
     "start": "node bin/static-server.mjs",
     "doctor": "node bin/dev-doctor.mjs",
