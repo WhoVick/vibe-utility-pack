@@ -1,0 +1,14 @@
+Title: Add offline support and parser regression tests
+Body: This PR adds a service worker, web manifest, parser extraction, and tests for CSV, README, meeting notes, diagnostics, and changelog flows.
+Modified: app.js
+Modified: src/core.mjs
+Added: sw.js
+Added: manifest.webmanifest
+Added: tests/core.test.mjs
+commit: feat: add offline install support
+commit: test: cover parser edge cases
+commit: docs: add security model
+@@ app.js
++ registerServiceWorker();
+@@ src/core.mjs
++ export function summarizeFinanceCsv(text) {}

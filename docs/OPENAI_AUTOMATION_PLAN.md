@@ -37,7 +37,7 @@ Vibe Utility Pack already focuses on repetitive maintainer work: README review, 
 
 ## First Implementation Milestone
 
-- Add a documented `OPENAI_API_KEY` path for local use only.
-- Start with CLI-only PR summary and changelog drafting.
-- Add tests for prompt construction so sensitive fields can be redacted consistently.
+- Add a documented `OPENAI_API_KEY` path for local use only. Done in `docs/API_PRIVACY.md`.
+- Start with CLI-only PR summary and changelog drafting. PR summary prototype added as `vibe-pr-summary`.
+- Add tests for prompt construction so sensitive fields can be redacted consistently. Initial prompt and API-call tests added in `tests/pr-summary.test.mjs`.
 - Keep the browser app dependency-free until the workflow proves useful.

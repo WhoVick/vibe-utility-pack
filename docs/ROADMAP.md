@@ -3,11 +3,16 @@
 ## Near term
 
 - Publish the CLI tools as an npm package when command output is stable.
-- Prototype one optional OpenAI-powered maintainer workflow.
 - Run an accessibility and keyboard navigation pass across the browser app.
 - Add import/export flows for each tool.
 - Add labels and issue triage workflow.
 - Expand parser tests as each import/export format grows.
+
+## Completed in 0.3.0
+
+- Added the first optional OpenAI-powered maintainer workflow as `vibe-pr-summary`.
+- Added API privacy documentation for opt-in CLI calls.
+- Added tests for PR context parsing, prompt construction, model selection, and Responses API request shape.
 
 ## Completed in 0.2.1
 

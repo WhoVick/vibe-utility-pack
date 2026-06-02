@@ -53,6 +53,7 @@ The hosted demo also registers a small service worker, so repeat visits can open
 npm run doctor
 npm run repo-health
 npm run changelog -- --from-file examples/commit-log.txt
+npm run pr-summary -- --from-file examples/pr-context.txt
 ```
 
 Useful direct commands:
@@ -61,6 +62,7 @@ Useful direct commands:
 node bin/dev-doctor.mjs --markdown
 node bin/repo-health.mjs --write
 type examples\commit-log.txt | node bin/changelog.mjs
+type examples\pr-context.txt | node bin/pr-summary.mjs
 ```
 
 On macOS/Linux, replace `type` with `cat`.
@@ -85,6 +87,30 @@ On macOS/Linux, replace `type` with `cat`.
 |   `-- static-server.mjs
 `-- examples/
 ```
+
+## Optional OpenAI CLI Prototype
+
+`vibe-pr-summary` is the first API-powered maintainer workflow. It summarizes pull request context from a file or stdin.
+
+By default it does not call OpenAI. It creates a local checklist and prints the privacy rules:
+
+```bash
+npm run pr-summary -- --from-file examples/pr-context.txt
+```
+
+To inspect the prompt before sending anything:
+
+```bash
+npm run pr-summary -- --from-file examples/pr-context.txt --show-prompt
+```
+
+To opt in to the OpenAI Responses API:
+
+```bash
+OPENAI_API_KEY=sk-... npm run pr-summary -- --from-file examples/pr-context.txt --send-to-openai
+```
+
+See `docs/API_PRIVACY.md` before using API mode.
 
 ## GitHub publishing checklist
 
@@ -111,6 +137,7 @@ Planning docs:
 - `docs/DEMO_SCRIPT.md`
 - `docs/MAINTAINER_WORKFLOWS.md`
 - `docs/ADOPTION.md`
+- `docs/API_PRIVACY.md`
 - `docs/SECURITY_MODEL.md`
 - `docs/OPENAI_AUTOMATION_PLAN.md`
 - `docs/CODEX_FOR_OSS_APPLICATION.md`
@@ -131,6 +158,7 @@ This is an early-stage public OSS project maintained by `WhoVick`. It currently 
 
 - See `CONTRIBUTING.md` for contribution guidelines.
 - See `SECURITY.md` for vulnerability reporting.
+- Leave maintainer feedback in issue #12: https://github.com/WhoVick/vibe-utility-pack/issues/12
 - Use GitHub issues for focused bugs, feature requests, and documentation tasks.
 - Use GitHub Discussions for broader support questions and project ideas.
 

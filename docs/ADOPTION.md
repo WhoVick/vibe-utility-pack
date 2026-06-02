@@ -15,6 +15,7 @@ As of 2026-06-01:
 - Issue templates, PR template, contributing guide, support guide, code of conduct, and security policy.
 - Security model and OpenAI automation plan.
 - Regression tests for the core parser paths.
+- Public maintainer feedback request: https://github.com/WhoVick/vibe-utility-pack/issues/12
 
 ## Honest Limits
 
@@ -39,6 +40,10 @@ The next adoption step is to ask a small group of real maintainers for feedback 
 - What input/output format is missing.
 - Whether the README and demo explain the project quickly.
 - Which workflow deserves the first API-powered prototype.
+
+Public feedback is collected in issue #12:
+
+https://github.com/WhoVick/vibe-utility-pack/issues/12
 
 ## Outreach Draft
 

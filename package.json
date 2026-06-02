@@ -1,6 +1,6 @@
 {
   "name": "vibe-utility-pack",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Ten local-first, dependency-free maintainer utilities in one GitHub-ready toolkit.",
   "type": "module",
   "private": false,
@@ -17,13 +17,15 @@
     "doctor": "node bin/dev-doctor.mjs",
     "repo-health": "node bin/repo-health.mjs",
     "changelog": "node bin/changelog.mjs",
-    "check": "node --check app.js && node --check src/core.mjs && node --check tests/core.test.mjs && node --check bin/dev-doctor.mjs && node --check bin/repo-health.mjs && node --check bin/changelog.mjs && node --check bin/static-server.mjs",
-    "test": "npm run check && node tests/core.test.mjs"
+    "pr-summary": "node bin/pr-summary.mjs",
+    "check": "node --check app.js && node --check src/core.mjs && node --check src/pr-summary.mjs && node --check tests/core.test.mjs && node --check tests/pr-summary.test.mjs && node --check bin/dev-doctor.mjs && node --check bin/repo-health.mjs && node --check bin/changelog.mjs && node --check bin/pr-summary.mjs && node --check bin/static-server.mjs",
+    "test": "npm run check && node tests/core.test.mjs && node tests/pr-summary.test.mjs"
   },
   "bin": {
     "vibe-doctor": "bin/dev-doctor.mjs",
     "vibe-health": "bin/repo-health.mjs",
-    "vibe-changelog": "bin/changelog.mjs"
+    "vibe-changelog": "bin/changelog.mjs",
+    "vibe-pr-summary": "bin/pr-summary.mjs"
   },
   "keywords": [
     "developer-tools",

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 - 2026-06-02
+
+- Added `vibe-pr-summary`, the first optional OpenAI-powered maintainer CLI prototype.
+- Added local fallback output, prompt preview, and explicit `--send-to-openai` opt-in.
+- Added API privacy documentation and tests for PR context parsing, prompt construction, model selection, and Responses API request shape.
+
 ## 0.2.1 - 2026-06-01
 
 - Improved screenshot-to-issue export with annotated PNG download.
