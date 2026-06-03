@@ -10,9 +10,13 @@ Open the live demo and say:
 
 Point out that it runs as a static GitHub Pages app and does not require an account, backend, analytics, or API key.
 
+Set the first task clearly:
+
+> Start with one maintainer win: review a README or summarize a PR in 60 seconds. The other tools support the rest of the release and contributor workflow.
+
 ## 10-25 seconds: Maintainer Quality Loop
 
-Open **README Fixer**.
+Open **README Fixer** as the flagship browser workflow.
 
 Paste a short README and run the analysis. Show the score, missing signals, and generated outline. The point is to show how a maintainer can quickly review a new project or pull request before publishing.
 
@@ -32,7 +36,7 @@ Show the repo readiness checklist and diagnostics parser. The point is contribut
 
 Close with:
 
-> The core stays local-first. Codex and API credits would be used for optional maintainer automation: PR summaries, issue triage, release notes, README review, and security-focused parser checks.
+> The core stays local-first. The PR summary CLI is local by default, shows the exact prompt with `--show-prompt`, and sends context only when `--send-to-openai` is present. Codex and API credits would expand this opt-in maintainer automation path.
 
 ## Demo Links
 

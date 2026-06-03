@@ -4,21 +4,34 @@
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![local-first](https://img.shields.io/badge/local--first-yes-blue)
 
-Local-first maintainer toolkit with ten dependency-free utilities for README review, repo health, screenshot-to-issue reports, changelog drafting, meeting-note cleanup, and contributor onboarding.
+Local-first maintainer toolkit for one fast first win: review a README or summarize a pull request in 60 seconds, then use the rest of the pack for repo health, changelogs, issue cleanup, meeting notes, and contributor onboarding.
 
-The browser app runs on GitHub Pages with no backend, account, analytics, or API key. The CLI scripts in `bin/` cover the maintainer workflows that benefit from terminal input.
+The browser app runs on GitHub Pages with no backend, account, analytics, or API key. The CLI scripts in `bin/` cover maintainer workflows that benefit from terminal input, including the optional PR summary prototype.
 
 **Live demo:** https://whovick.github.io/vibe-utility-pack/
 
 **Why this exists:** small OSS projects often fail at the same maintenance chores: unclear READMEs, weak issue reports, missing release notes, rough contributor setup, and undocumented security assumptions. This repo packages those checks into fast local tools that are easy to inspect, fork, and extend.
 
-**Current OSS signals:** MIT license, CI, GitHub Pages, releases, issue templates, PR template, security policy, contributing guide, parser regression tests, offline-capable static app, security model, adoption plan, and optional Codex/API automation plan.
+## Start Here
+
+Pick one primary maintainer job:
+
+- **Review a README in the browser:** open the live demo, choose README Fixer, paste a README, and get a score plus a stronger outline.
+- **Summarize a PR in the CLI:** run `npm run pr-summary -- --from-file examples/pr-context.txt` for a local checklist, then inspect the optional API prompt with `--show-prompt`.
+
+After that first workflow, use the rest of the pack for repo health, changelog drafting, screenshot-to-issue exports, meeting-note cleanup, and contributor setup.
+
+## Trust Signals
+
+- **Local and private by default:** static GitHub Pages app, no backend, no account, no analytics, no browser API calls, and offline-capable assets.
+- **Explicit API consent:** `vibe-pr-summary` never sends PR context unless `--send-to-openai` is present; `--show-prompt` lets maintainers inspect the exact prompt first.
+- **Maintainer-ready project:** MIT license, CI, releases, parser regression tests, issue templates, PR template, security policy, contributing guide, support guide, security model, adoption plan, and Codex/API automation plan.
 
 ![Vibe Utility Pack screenshot](docs/assets/screenshot.png)
 
 ![Vibe Utility Pack demo](docs/assets/demo.gif)
 
-## What is inside
+## The Pack
 
 - Personal Ops Dashboard: tasks, notes, habits, and launch links stored locally.
 - README Roast & Fixer: scores a README and generates a better outline.

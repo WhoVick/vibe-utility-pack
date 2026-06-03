@@ -2,6 +2,8 @@
 
 Vibe Utility Pack is organized around repeatable tasks that small OSS maintainers do every week.
 
+The recommended first path is intentionally narrow: review a README in the browser or summarize a PR in the CLI, then branch into repo health, changelog, issue, and contributor workflows.
+
 ## README Review
 
 Use **README Fixer** before publishing a new repository or reviewing a documentation PR.
