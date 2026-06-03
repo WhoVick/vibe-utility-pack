@@ -84,16 +84,54 @@ function initTabs() {
     const button = document.createElement("button");
     button.className = `tab-button ${index === 0 ? "active" : ""}`;
     button.dataset.tool = key;
+    button.id = `tab-${key}`;
+    button.type = "button";
+    button.role = "tab";
+    button.setAttribute("aria-controls", key);
+    button.setAttribute("aria-selected", String(index === 0));
+    button.tabIndex = index === 0 ? 0 : -1;
     button.innerHTML = `<span>${mark}</span><span>${label}</span>`;
     button.addEventListener("click", () => activateTool(key));
+    button.addEventListener("keydown", handleTabKeydown);
     tabs.appendChild(button);
+  });
+  tools.forEach(([key], index) => {
+    const panel = $(`#${key}`);
+    panel.role = "tabpanel";
+    panel.setAttribute("aria-labelledby", `tab-${key}`);
+    panel.hidden = index !== 0;
   });
 }
 
 function activateTool(key) {
-  $$(".tab-button").forEach((button) => button.classList.toggle("active", button.dataset.tool === key));
-  $$(".tool-panel").forEach((panel) => panel.classList.toggle("active", panel.id === key));
+  $$(".tab-button").forEach((button) => {
+    const active = button.dataset.tool === key;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-selected", String(active));
+    button.tabIndex = active ? 0 : -1;
+  });
+  $$(".tool-panel").forEach((panel) => {
+    const active = panel.id === key;
+    panel.classList.toggle("active", active);
+    panel.hidden = !active;
+  });
   $("#toolTitle").textContent = $(`#${key}`).dataset.title;
+}
+
+function handleTabKeydown(event) {
+  const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End"];
+  if (!keys.includes(event.key)) return;
+  event.preventDefault();
+  const buttons = $$(".tab-button");
+  const current = buttons.findIndex((button) => button === event.currentTarget);
+  const direction = ["ArrowUp", "ArrowLeft"].includes(event.key) ? -1 : 1;
+  let next = current + direction;
+  if (event.key === "Home") next = 0;
+  if (event.key === "End") next = buttons.length - 1;
+  if (next < 0) next = buttons.length - 1;
+  if (next >= buttons.length) next = 0;
+  buttons[next].focus();
+  activateTool(buttons[next].dataset.tool);
 }
 
 function initGlobalActions() {

@@ -1,6 +1,6 @@
 {
   "name": "vibe-utility-pack",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Ten local-first, dependency-free maintainer utilities in one GitHub-ready toolkit.",
   "type": "module",
   "private": false,
@@ -18,8 +18,9 @@
     "repo-health": "node bin/repo-health.mjs",
     "changelog": "node bin/changelog.mjs",
     "pr-summary": "node bin/pr-summary.mjs",
-    "check": "node --check app.js && node --check src/core.mjs && node --check src/pr-summary.mjs && node --check tests/core.test.mjs && node --check tests/pr-summary.test.mjs && node --check bin/dev-doctor.mjs && node --check bin/repo-health.mjs && node --check bin/changelog.mjs && node --check bin/pr-summary.mjs && node --check bin/static-server.mjs",
-    "test": "npm run check && node tests/core.test.mjs && node tests/pr-summary.test.mjs"
+    "check": "node --check app.js && node --check src/core.mjs && node --check src/pr-summary.mjs && node --check tests/core.test.mjs && node --check tests/pr-summary.test.mjs && node --check tests/accessibility-markup.test.mjs && node --check bin/dev-doctor.mjs && node --check bin/repo-health.mjs && node --check bin/changelog.mjs && node --check bin/pr-summary.mjs && node --check bin/static-server.mjs",
+    "test": "npm run check && node tests/core.test.mjs && node tests/pr-summary.test.mjs && node tests/accessibility-markup.test.mjs",
+    "pack:check": "npm pack --dry-run"
   },
   "bin": {
     "vibe-doctor": "bin/dev-doctor.mjs",
@@ -29,11 +30,38 @@
   },
   "keywords": [
     "developer-tools",
+    "maintainer-tools",
+    "open-source",
+    "oss",
     "productivity",
     "static-site",
     "local-first",
-    "github"
+    "github",
+    "changelog",
+    "readme",
+    "cli"
   ],
+  "files": [
+    "bin/",
+    "src/",
+    "examples/",
+    "docs/",
+    "index.html",
+    "styles.css",
+    "app.js",
+    "manifest.webmanifest",
+    "sw.js",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "SUPPORT.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=18"

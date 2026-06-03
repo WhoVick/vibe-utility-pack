@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1 - 2026-06-03
+
+- Improved browser accessibility with skip link, tablist semantics, arrow-key tab navigation, accessible control names, visible focus states, and a static accessibility markup test.
+- Prepared npm publishing metadata with package `files`, public publish config, expanded keywords, and `npm run pack:check`.
+- Added npm publishing checklist documentation.
+
 ## 0.3.0 - 2026-06-02
 
 - Added `vibe-pr-summary`, the first optional OpenAI-powered maintainer CLI prototype.

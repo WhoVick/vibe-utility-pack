@@ -62,6 +62,8 @@ The hosted demo also registers a small service worker, so repeat visits can open
 
 ## CLI tools
 
+The package is prepared for npm publishing. Until the first npm release, run commands from the repository:
+
 ```bash
 npm run doctor
 npm run repo-health
@@ -79,6 +81,8 @@ type examples\pr-context.txt | node bin/pr-summary.mjs
 ```
 
 On macOS/Linux, replace `type` with `cat`.
+
+Publishing notes live in `docs/NPM_PUBLISHING.md`.
 
 ## Project structure
 

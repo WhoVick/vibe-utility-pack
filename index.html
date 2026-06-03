@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#workspace">Skip to main tools</a>
   <div class="shell">
     <aside class="rail" aria-label="Tools">
       <div class="brand">
@@ -20,10 +21,10 @@
           <span>10 tiny useful builds</span>
         </div>
       </div>
-      <nav class="tabs" id="tabs"></nav>
+      <nav class="tabs" id="tabs" role="tablist" aria-label="Utility tools"></nav>
     </aside>
 
-    <main class="workspace">
+    <main class="workspace" id="workspace" tabindex="-1">
       <header class="topbar">
         <div>
           <p class="eyebrow">Local-first, dependency-free MVPs</p>
@@ -40,14 +41,14 @@
           <section class="panel">
             <h2>Focus Queue</h2>
             <div class="inline-form">
-              <input id="taskInput" type="text" placeholder="Ship README, email sponsor, fix auth...">
+              <input id="taskInput" type="text" aria-label="New focus task" placeholder="Ship README, email sponsor, fix auth...">
               <button id="addTask">Add</button>
             </div>
             <ul class="stack-list" id="taskList"></ul>
           </section>
           <section class="panel">
             <h2>Quick Notes</h2>
-            <textarea id="opsNotes" rows="9" placeholder="Scratchpad, decisions, links, today's plan..."></textarea>
+            <textarea id="opsNotes" rows="9" aria-label="Quick notes" placeholder="Scratchpad, decisions, links, today's plan..."></textarea>
           </section>
           <section class="panel">
             <h2>Habit Pulse</h2>
@@ -56,8 +57,8 @@
           <section class="panel">
             <h2>Launch Links</h2>
             <div class="inline-form">
-              <input id="linkLabel" type="text" placeholder="Label">
-              <input id="linkUrl" type="url" placeholder="https://">
+              <input id="linkLabel" type="text" aria-label="Launch link label" placeholder="Label">
+              <input id="linkUrl" type="url" aria-label="Launch link URL" placeholder="https://">
               <button id="addLink">Add</button>
             </div>
             <ul class="stack-list" id="linkList"></ul>
@@ -69,7 +70,7 @@
         <div class="tool-grid two">
           <section class="panel">
             <h2>README Input</h2>
-            <textarea id="readmeInput" rows="18" placeholder="# Project&#10;&#10;Paste a README here..."></textarea>
+            <textarea id="readmeInput" rows="18" aria-label="README input" placeholder="# Project&#10;&#10;Paste a README here..."></textarea>
             <div class="button-row">
               <button id="sampleReadme">Sample</button>
               <button id="analyzeReadme">Analyze</button>
@@ -77,10 +78,10 @@
           </section>
           <section class="panel">
             <h2>Fix Plan</h2>
-            <div id="readmeScore" class="metric-line"></div>
+            <div id="readmeScore" class="metric-line" role="status" aria-live="polite"></div>
             <ul class="check-list" id="readmeFindings"></ul>
             <label class="field-label" for="readmeOutput">Generated outline</label>
-            <textarea id="readmeOutput" rows="10" readonly></textarea>
+            <textarea id="readmeOutput" rows="10" aria-label="Generated README outline" readonly></textarea>
           </section>
         </div>
       </section>
@@ -90,7 +91,7 @@
           <section class="panel">
             <h2>CSV Import</h2>
             <p class="hint">Columns: date, description, amount. Negative values are expenses.</p>
-            <textarea id="financeCsv" rows="16" placeholder="date,description,amount&#10;2026-05-01,Coffee,-4.90"></textarea>
+            <textarea id="financeCsv" rows="16" aria-label="Finance CSV input" placeholder="date,description,amount&#10;2026-05-01,Coffee,-4.90"></textarea>
             <div class="button-row">
               <button id="sampleFinance">Sample</button>
               <button id="parseFinance">Summarize</button>
@@ -98,10 +99,10 @@
           </section>
           <section class="panel">
             <h2>Monthly Summary</h2>
-            <div class="metric-strip" id="financeMetrics"></div>
+            <div class="metric-strip" id="financeMetrics" role="status" aria-live="polite"></div>
             <div class="bar-list" id="financeBars"></div>
             <label class="field-label" for="financeCleanCsv">Clean CSV</label>
-            <textarea id="financeCleanCsv" rows="7" readonly></textarea>
+            <textarea id="financeCleanCsv" rows="7" aria-label="Clean finance CSV output" readonly></textarea>
           </section>
         </div>
       </section>
@@ -110,9 +111,9 @@
         <div class="tool-grid two">
           <section class="panel">
             <h2>Prompt Editor</h2>
-            <input id="promptTitle" type="text" placeholder="Prompt title">
-            <input id="promptTags" type="text" placeholder="tags, separated, by comma">
-            <textarea id="promptBody" rows="10" placeholder="Write a prompt with {variables}..."></textarea>
+            <input id="promptTitle" type="text" aria-label="Prompt title" placeholder="Prompt title">
+            <input id="promptTags" type="text" aria-label="Prompt tags" placeholder="tags, separated, by comma">
+            <textarea id="promptBody" rows="10" aria-label="Prompt body" placeholder="Write a prompt with {variables}..."></textarea>
             <div class="button-row">
               <button id="savePrompt">Save</button>
               <button id="clearPromptEditor">Clear</button>
@@ -120,11 +121,11 @@
           </section>
           <section class="panel">
             <h2>Vault</h2>
-            <input id="promptSearch" type="search" placeholder="Search prompts or tags">
+            <input id="promptSearch" type="search" aria-label="Search prompts or tags" placeholder="Search prompts or tags">
             <ul class="stack-list" id="promptList"></ul>
             <label class="field-label" for="promptRenderVars">Variables JSON</label>
-            <input id="promptRenderVars" type="text" placeholder='{"project":"Acme"}'>
-            <textarea id="promptPreview" rows="8" readonly></textarea>
+            <input id="promptRenderVars" type="text" aria-label="Prompt variables JSON" placeholder='{"project":"Acme"}'>
+            <textarea id="promptPreview" rows="8" aria-label="Rendered prompt preview" readonly></textarea>
           </section>
         </div>
       </section>
@@ -133,8 +134,8 @@
         <div class="tool-grid two">
           <section class="panel">
             <h2>Screenshot Annotator</h2>
-            <input id="screenshotFile" type="file" accept="image/*">
-            <canvas id="issueCanvas" width="900" height="520" aria-label="Screenshot annotation canvas"></canvas>
+            <input id="screenshotFile" type="file" accept="image/*" aria-label="Screenshot image upload">
+            <canvas id="issueCanvas" width="900" height="520" tabindex="0" aria-label="Screenshot annotation canvas. Use a mouse or pointer to draw annotation rectangles."></canvas>
             <div class="button-row">
               <button id="undoAnnotation">Undo</button>
               <button id="clearAnnotations">Clear</button>
@@ -142,15 +143,15 @@
           </section>
           <section class="panel">
             <h2>Issue Markdown</h2>
-            <input id="issueTitle" type="text" placeholder="Short bug title">
-            <textarea id="issueSteps" rows="4" placeholder="Steps to reproduce"></textarea>
-            <textarea id="issueExpected" rows="3" placeholder="Expected behavior"></textarea>
-            <textarea id="issueActual" rows="3" placeholder="Actual behavior"></textarea>
+            <input id="issueTitle" type="text" aria-label="Issue title" placeholder="Short bug title">
+            <textarea id="issueSteps" rows="4" aria-label="Steps to reproduce" placeholder="Steps to reproduce"></textarea>
+            <textarea id="issueExpected" rows="3" aria-label="Expected behavior" placeholder="Expected behavior"></textarea>
+            <textarea id="issueActual" rows="3" aria-label="Actual behavior" placeholder="Actual behavior"></textarea>
             <div class="button-row">
               <button id="buildIssue">Build Issue</button>
               <button id="downloadIssueImage">Download PNG</button>
             </div>
-            <textarea id="issueMarkdown" rows="9" readonly></textarea>
+            <textarea id="issueMarkdown" rows="9" aria-label="Generated issue markdown" readonly></textarea>
           </section>
         </div>
       </section>
@@ -159,15 +160,15 @@
         <div class="tool-grid two">
           <section class="panel">
             <h2>Repo Signals</h2>
-            <input id="repoName" type="text" placeholder="owner/repo or project name">
+            <input id="repoName" type="text" aria-label="Repository name" placeholder="owner/repo or project name">
             <div class="switch-grid" id="healthChecks"></div>
             <button id="buildHealth">Generate</button>
           </section>
           <section class="panel">
             <h2>Health Report</h2>
-            <div class="metric-line" id="healthScore"></div>
+            <div class="metric-line" id="healthScore" role="status" aria-live="polite"></div>
             <div class="badge-row" id="healthBadges"></div>
-            <textarea id="healthMarkdown" rows="14" readonly></textarea>
+            <textarea id="healthMarkdown" rows="14" aria-label="Generated health markdown" readonly></textarea>
           </section>
         </div>
       </section>
@@ -176,7 +177,7 @@
         <div class="tool-grid two">
           <section class="panel">
             <h2>Messy Notes</h2>
-            <textarea id="meetingInput" rows="18" placeholder="@maya follow up with legal by 2026-06-04&#10;Decision: launch beta on Friday&#10;TODO Sam update pricing page"></textarea>
+            <textarea id="meetingInput" rows="18" aria-label="Meeting notes input" placeholder="@maya follow up with legal by 2026-06-04&#10;Decision: launch beta on Friday&#10;TODO Sam update pricing page"></textarea>
             <div class="button-row">
               <button id="sampleMeeting">Sample</button>
               <button id="parseMeeting">Extract</button>
@@ -184,7 +185,7 @@
           </section>
           <section class="panel">
             <h2>Clean Output</h2>
-            <textarea id="meetingOutput" rows="18" readonly></textarea>
+            <textarea id="meetingOutput" rows="18" aria-label="Clean meeting notes output" readonly></textarea>
           </section>
         </div>
       </section>
@@ -194,7 +195,7 @@
           <section class="panel">
             <h2>Paste Diagnostics</h2>
             <p class="hint">Run versions manually or use <code>npm run doctor</code> in this repo.</p>
-            <textarea id="doctorInput" rows="16" placeholder="node --version: v24.11.1&#10;npm --version: 11.6.2&#10;git --version: git version 2.50.0"></textarea>
+            <textarea id="doctorInput" rows="16" aria-label="Diagnostics input" placeholder="node --version: v24.11.1&#10;npm --version: 11.6.2&#10;git --version: git version 2.50.0"></textarea>
             <div class="button-row">
               <button id="sampleDoctor">Sample</button>
               <button id="runDoctorParser">Check</button>
@@ -203,7 +204,7 @@
           <section class="panel">
             <h2>Doctor Report</h2>
             <ul class="check-list" id="doctorReport"></ul>
-            <textarea id="doctorMarkdown" rows="9" readonly></textarea>
+            <textarea id="doctorMarkdown" rows="9" aria-label="Doctor markdown output" readonly></textarea>
           </section>
         </div>
       </section>
@@ -212,16 +213,16 @@
         <div class="tool-grid two">
           <section class="panel">
             <h2>Business Config</h2>
-            <input id="bizName" type="text" placeholder="Studio North">
-            <input id="bizOffer" type="text" placeholder="Pilates, coaching, design audits...">
-            <input id="bizCity" type="text" placeholder="City">
-            <textarea id="bizServices" rows="5" placeholder="Private sessions - 75&#10;Group class - 28&#10;Intro consult - free"></textarea>
-            <input id="bizContact" type="text" placeholder="hello@example.com">
+            <input id="bizName" type="text" aria-label="Business name" placeholder="Studio North">
+            <input id="bizOffer" type="text" aria-label="Business offer" placeholder="Pilates, coaching, design audits...">
+            <input id="bizCity" type="text" aria-label="Business city" placeholder="City">
+            <textarea id="bizServices" rows="5" aria-label="Business services" placeholder="Private sessions - 75&#10;Group class - 28&#10;Intro consult - free"></textarea>
+            <input id="bizContact" type="text" aria-label="Business contact" placeholder="hello@example.com">
             <button id="buildSite">Generate Site</button>
           </section>
           <section class="panel">
             <h2>Static HTML</h2>
-            <textarea id="siteOutput" rows="18" readonly></textarea>
+            <textarea id="siteOutput" rows="18" aria-label="Generated static HTML" readonly></textarea>
           </section>
         </div>
       </section>
@@ -231,7 +232,7 @@
           <section class="panel">
             <h2>Commit Log</h2>
             <p class="hint">Paste lines from <code>git log --oneline</code> or conventional commits.</p>
-            <textarea id="changeInput" rows="18" placeholder="feat: add CSV importer&#10;fix: handle empty amount&#10;docs: update README"></textarea>
+            <textarea id="changeInput" rows="18" aria-label="Commit log input" placeholder="feat: add CSV importer&#10;fix: handle empty amount&#10;docs: update README"></textarea>
             <div class="button-row">
               <button id="sampleChange">Sample</button>
               <button id="buildChange">Generate</button>
@@ -239,7 +240,7 @@
           </section>
           <section class="panel">
             <h2>Release Notes</h2>
-            <textarea id="changeOutput" rows="18" readonly></textarea>
+            <textarea id="changeOutput" rows="18" aria-label="Generated release notes" readonly></textarea>
           </section>
         </div>
       </section>
