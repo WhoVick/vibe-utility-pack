@@ -2,11 +2,16 @@
 
 ## Near term
 
-- Publish the CLI tools as an npm package when command output is stable.
-- Run an accessibility and keyboard navigation pass across the browser app.
 - Add import/export flows for each tool.
 - Add labels and issue triage workflow.
 - Expand parser tests as each import/export format grows.
+
+## Completed in 0.3.1
+
+- Prepared CLI package metadata for npm publishing.
+- Added npm publishing checklist and `npm run pack:check`.
+- Added browser accessibility and keyboard navigation improvements.
+- Added a static accessibility markup test.
 
 ## Completed in 0.3.0
 
